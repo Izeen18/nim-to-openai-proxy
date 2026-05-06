@@ -65,14 +65,19 @@ app.post('/v1/chat/completions', async (req, res) => {
 
     let nimModel = MODEL_MAPPING[model] || 'meta/llama-3.1-8b-instruct';
 
-    const nimRequest = {
-      model: nimModel,
-      messages,
-      temperature: temperature || 0.8,
-      max_tokens: max_tokens || 8192,
-      extra_body: ENABLE_THINKING_MODE ? { chat_template_kwargs: { thinking: true } } : undefined,
-      stream: stream || false
-    };
+const nimRequest = {
+  model: nimModel,
+  messages,
+  temperature: temperature || 0.8,
+  max_tokens: max_tokens || 8192,
+  stream: stream || false
+};
+
+if (ENABLE_THINKING_MODE) {
+  nimRequest.extra_body = {
+    chat_template_kwargs: { enable_thinking: true }
+  };
+}
 
     const response = await axios.post(
       `${NIM_API_BASE}/chat/completions`,
