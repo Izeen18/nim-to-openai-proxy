@@ -294,13 +294,22 @@ app.post('/v1/chat/completions', async (req, res) => {
 
     const baseRequest = {
       messages,
+      model: primaryModel, // Note: callWithFallback will override this
       temperature: temperature ?? 0.7,
       max_tokens: Math.min(max_tokens ?? 2048, MAX_TOKENS_LIMIT),
+      top_p: req.body.top_p,
+      frequency_penalty: req.body.frequency_penalty,
+      presence_penalty: req.body.presence_penalty,
+      stop: req.body.stop,
       stream: stream || false,
+      tools: req.body.tools,
+      tool_choice: req.body.tool_choice,
+      response_format: req.body.response_format,
       extra_body: ENABLE_THINKING_MODE
-        ? { chat_template_kwargs: { thinking: true } }
-        : undefined
-    };
+    ? { chat_template_kwargs: { thinking: true } }
+    : undefined
+};
+    
 
     const { response, model: usedModel } = await callWithFallback(baseRequest, modelChain);
     upstreamStream = response.data;
