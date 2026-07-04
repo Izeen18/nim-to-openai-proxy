@@ -39,7 +39,7 @@ Node.js 24+, a NVAPI/Nim API key, a deployment platform (though if you follow th
 | `mistral-nemo` | `mistralai/mistral-nemotron` | Casual/anime RP | Fast | Low |
 | `claude-3-opus` | `openai/gpt-oss-120b` | Alternative to Chinese models | Medium | Low-Medium |
 | `claude-3-sonnet` | `openai/gpt-oss-20b` | Fast, distinct voice | Fast | Low-Medium |
-| `glm-5.1` | `z-ai/glm-5.1` | General purpose | Medium | Medium |
+| `glm-5.2` | `z-ai/glm-5.2` | General purpose | Medium | Medium |
 | `gpt-3.5-turbo` | `nvidia/nemotron-3-super-120b-a12b` | Lightweight tasks | Fast | Low |
 | `gpt-3.5` | `qwen/qwen3.5-397b-a17b` | Qwen fallback | Medium | Medium |
 | `google-light` | `google/gemma-4-31b-it` | Short scenes, fast | Fast | Low-Medium |
